@@ -1,0 +1,2 @@
+Changes:
+In ImageProcessor Model many of the methods were very similar. They each took in an imgname and new name then applied some edit to it using ImageModel methods. To streamline this, each of these methods were combined into Edit which takes the imgname and newname as well as a Function that edits an image model. The corresponding Command classes were updated accordingly, and now, the code is much more readable and less repetitive.
