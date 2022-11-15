@@ -40,7 +40,7 @@ Thumbs.db
 /.idea
 .idea
 /out
-.iml
+*.iml
 src/.DS_Store
 src/res/.DS_Store
 src/res/images/.DS_Store
