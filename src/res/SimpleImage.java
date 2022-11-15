@@ -1,5 +1,8 @@
 package res;
 
+import java.util.HashMap;
+import java.util.function.Function;
+
 /**
  * represents a ppm image and operations to modify it.
  */
@@ -166,7 +169,7 @@ public class SimpleImage implements ImageModel {
         if (j < mid) {
           starty = mid - j;
         }
-        if (j + mid > image[0]. length - 1) {
+        if (j + mid > image[0].length - 1) {
           endy = (image[0].length - j) + mid / 2;
         }
         double red = 0;
@@ -175,9 +178,9 @@ public class SimpleImage implements ImageModel {
 
         for (int x = startx; x <= endx; x++) {
           for (int y = starty; y <= endy; y++) {
-              red += image[i + (x-mid)][j+y - mid].getRed() * kern.slotAt(x, y);
-              green += image[i + x-mid][j+y - mid].getGreen() * kern.slotAt(x, y);
-              blue += image[i + x-mid][j+y - mid].getBlue() * kern.slotAt(x, y);
+            red += image[i + (x - mid)][j + y - mid].getRed() * kern.slotAt(x, y);
+            green += image[i + x - mid][j + y - mid].getGreen() * kern.slotAt(x, y);
+            blue += image[i + x - mid][j + y - mid].getBlue() * kern.slotAt(x, y);
 
           }
         }
@@ -196,5 +199,37 @@ public class SimpleImage implements ImageModel {
   @Override
   public RGB[][] getImage() {
     return this.image.clone();
+  }
+  @Override
+  public HashMap<Integer, Integer> histogram(String component) {
+    Function<RGB, Integer> func;
+    switch (component.toLowerCase()) {
+      case "red":
+        func = RGB::getRed;
+        break;
+      case "green":
+        func = RGB::getGreen;
+        break;
+      case "blue":
+        func = RGB::getBlue;
+        break;
+      case "intensity":
+        func = RGB::intensity;
+        break;
+      default:
+        throw new IllegalArgumentException("Unsupported component: " + component);
+    }
+
+    HashMap<Integer, Integer> track = new HashMap<>();
+    int maxrgb = image[0][0].getMax();
+    for (int i = 0; i <= maxrgb; i++) {
+      track.put(i, 0);
+    }
+    for (RGB[] rgbs : image) {
+      for (RGB rgb : rgbs) {
+        track.put(func.apply(rgb), track.get(func.apply(rgb)) + 1);
+      }
+    }
+    return track;
   }
 }
