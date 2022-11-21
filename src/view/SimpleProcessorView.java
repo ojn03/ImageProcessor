@@ -8,8 +8,8 @@ import model.ImageProcessorModel;
  * visualizes a processor model and controller.
  */
 public class SimpleProcessorView implements ImageProcessorView {
-  final ImageProcessorModel model;
-  final Appendable destination;
+  private final ImageProcessorModel model;
+  private final Appendable destination;
 
   /**
    * creates a new simpleprocessor with the given model and defaults destination.
@@ -34,6 +34,14 @@ public class SimpleProcessorView implements ImageProcessorView {
     this.destination = dest;
   }
 
+  //todo show image that is currently being worked on
+  //todo histogram of rgb shown at bottom as a line chart
+  //todo larger images should be scrollable
+  //todo implement all commands (flip, brighten, blur, etc)
+  //todo when saving, save what the user is currently seeing
+  // user friendly design. User should not have to specify a full path for files.
+
+
   @Override
   public void renderMessage(String message) {
     if (message == null) {
@@ -44,5 +52,11 @@ public class SimpleProcessorView implements ImageProcessorView {
     } catch (IOException e) {
       throw new IllegalArgumentException(e.getMessage());
     }
+
+
+  }
+
+  public void update() {
+
   }
 }

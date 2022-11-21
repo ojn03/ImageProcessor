@@ -11,4 +11,9 @@ public interface ImageProcessorView {
    * @param message is the message to be conveyed
    */
   void renderMessage(String message);
+
+  /**
+   * updates the view the most recent changes.
+   */
+  void update();
 }

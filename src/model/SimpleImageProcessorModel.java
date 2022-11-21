@@ -5,6 +5,7 @@ import java.util.function.Function;
 
 import res.ImageFileUtil;
 import res.ImageModel;
+import res.RGB;
 
 /**
  * Implements operations to be used in an image processor.
@@ -91,4 +92,14 @@ public class SimpleImageProcessorModel implements ImageProcessorModel {
   }
 
 
+  //todo make a copy of the image
+  @Override
+  public RGB[][] getImage(String imgName) {
+    if (this.images.containsKey(imgName)) {
+       return images.get(imgName).getImage();
+    }
+    else{
+      throw new IllegalArgumentException("no such image named " + imgName);
+    }
+  }
 }

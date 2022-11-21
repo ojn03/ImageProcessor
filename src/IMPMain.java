@@ -26,4 +26,5 @@ public class IMPMain {
             model, view, new InputStreamReader(System.in));
     controller.runProcessor();
   }
+
 }

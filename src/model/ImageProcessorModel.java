@@ -3,6 +3,7 @@ package model;
 import java.util.function.Function;
 
 import res.ImageModel;
+import res.RGB;
 
 /**
  * Represents operations to manipulate and store images.
@@ -55,5 +56,13 @@ public interface ImageProcessorModel {
    */
   void visualize(String imgName, String newName, String component);
 
+
+  /**
+   * gets a copy of the image at the given name.
+   *
+   * @param imgName the name of the image to get
+   * @return the image's copy
+   */
+  RGB[][] getImage(String imgName);
 
 }
