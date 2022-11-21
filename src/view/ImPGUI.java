@@ -35,7 +35,6 @@ public class ImPGUI implements ImageProcessorView {
     main.setVisible(true);
   }
 
-
   public static void main(String[] args) {
     new ImPGUI();
   }
@@ -57,9 +56,7 @@ public class ImPGUI implements ImageProcessorView {
   public void update() {
 
   }
-
 }
-
 
 class ImageNamesPanel extends JPanel {
 
@@ -67,9 +64,7 @@ class ImageNamesPanel extends JPanel {
   JPanel viewPort = new JPanel();
   JScrollPane scroll = new JScrollPane(viewPort);
 
-
   public ImageNamesPanel() {
-
 
     Font Arial20 = new Font("Arial", Font.ITALIC, 20);
     Border border = BorderFactory.createTitledBorder(null, "Images", 0, 0, Arial20);
@@ -87,15 +82,13 @@ class ImageNamesPanel extends JPanel {
 
     viewPort.add(inner);
 
-
     scroll.setPreferredSize(new Dimension(100, 1000));
 //    scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 //    scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     this.add(scroll);
 
   }
-
-
+  
   public void addImage(String newimg) {
     JButton b = new JButton(newimg);
     JPanel p = new JPanel();
@@ -115,20 +108,13 @@ class ImagePanel extends JPanel {
     } catch (IOException e) {
       throw new IllegalArgumentException(e.getMessage());
     }
+    ImageIcon icon = new ImageIcon(img);
+    JLabel imglabel = new JLabel();
+    JScrollPane imageScroll = new JScrollPane(imglabel);
+    imageScroll.setPreferredSize(new Dimension(500,500));
+    this.add(imageScroll);
+    imglabel.setIcon(icon);
 
-    canvas = new JPanel() {
-      protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(img, (int) canvas.getPreferredSize().getWidth() / 2, (int) canvas.getPreferredSize().getHeight() / 2, canvas);
-      }
-    };
-
-    canvas.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
-    JScrollPane imageScroll = new JScrollPane(canvas);
-    imageScroll.setPreferredSize(new Dimension(500, 500));
-    add(imageScroll, BorderLayout.CENTER);
-//    setVisible(true);
-    setPreferredSize(new Dimension(600, 600));
   }
 
   public void setImage(RGB[][] rgbs) {
@@ -160,7 +146,6 @@ class ImagePanel extends JPanel {
 }
 
 class HistogramPanel extends JPanel {
-
 
 }
 
@@ -199,56 +184,6 @@ class CommandsPanel extends JPanel {
 
   public void setListener(ActionListener a) {
 
-
   }
 
-}
-
-class Testing {
-  public void buildGUI() {
-    JFrame f = new JFrame();
-    f.getContentPane().add(new MyMenu());
-    f.pack();
-    f.setLocationRelativeTo(null);
-    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    f.setVisible(true);
-  }
-
-  public static void main(String[] args) {
-    SwingUtilities.invokeLater(new Runnable() {
-      public void run() {
-        new Testing().buildGUI();
-      }
-    });
-  }
-}
-
-class MyMenu extends JPanel {
-  JButton a = new JButton("test");
-  JButton b = new JButton("test1");
-  JButton c = new JButton("test3");
-  JButton d = new JButton("test4");
-  JButton e = new JButton("test5");
-  JButton f = new JButton("test6");
-  JButton g = new JButton("test7");
-  JButton h = new JButton("test8");
-
-  MyMenu() {
-    JPanel p = new JPanel();//<-------------
-    JPanel me = new JPanel();
-    me.setLayout(new GridLayout(0, 2));
-    me.add(a);
-    me.add(b);
-    me.add(c);
-    me.add(d);
-    me.add(e);
-    me.add(f);
-    me.add(g);
-    me.add(h);
-    p.add(me);//<-------------
-    //JScrollPane spane = new JScrollPane(me);
-    JScrollPane spane = new JScrollPane(p);//<-------------
-    spane.setPreferredSize(new Dimension(100, 100));
-    add(spane);
-  }
 }

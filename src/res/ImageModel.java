@@ -1,7 +1,5 @@
 package res;
 
-import java.util.HashMap;
-
 /**
  * represents an image and operations to modify said image.
  */
@@ -74,8 +72,7 @@ public interface ImageModel {
   /**
    * Creates a histogram mapping the frequency of each value in the picture.
    *
-   * @param component is the component to map in the histogram
    * @return returns a hashmap representing value-frequency pairs
    */
-  HashMap<Integer, Integer> histogram(String component);
+  int[][] histogram( );
 }
