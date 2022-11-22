@@ -92,14 +92,25 @@ public class SimpleImageProcessorModel implements ImageProcessorModel {
   }
 
 
-  //todo make a copy of the image
   @Override
   public RGB[][] getImage(String imgName) {
     if (this.images.containsKey(imgName)) {
-       return images.get(imgName).getImage();
+       return images.get(imgName).getImage().clone();
     }
     else{
       throw new IllegalArgumentException("no such image named " + imgName);
     }
+  }
+
+  /**
+   * generates a histogram representation of the image at the given name.
+   *
+   * @param imgName the name of the image for which to generate a histogram
+   * @return the histogram representation
+   */
+  @Override
+  public int[][] getHistogram(String imgName) {
+    ImageModel m = images.get(imgName);
+    return m.histogram();
   }
 }

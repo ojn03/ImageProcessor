@@ -34,13 +34,8 @@ public class SimpleProcessorView implements ImageProcessorView {
     this.destination = dest;
   }
 
-  //todo show image that is currently being worked on
-  //todo histogram of rgb shown at bottom as a line chart
-  //todo larger images should be scrollable
-  //todo implement all commands (flip, brighten, blur, etc)
-  //todo when saving, save what the user is currently seeing
-  // user friendly design. User should not have to specify a full path for files.
-
+  //todo fix histogram
+//todo error handling
 
   @Override
   public void renderMessage(String message) {

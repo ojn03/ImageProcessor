@@ -12,8 +12,5 @@ public interface ImageProcessorView {
    */
   void renderMessage(String message);
 
-  /**
-   * updates the view the most recent changes.
-   */
-  void update();
+
 }

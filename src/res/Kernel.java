@@ -31,7 +31,6 @@ public class Kernel {
    */
   public Kernel(String s) {
 
-    // todo command hashmap?
     if (s == null) {
       throw new IllegalArgumentException("no null values");
     } else if (s.equalsIgnoreCase("blur")) {
@@ -85,4 +84,4 @@ public class Kernel {
     }
   }
 }
-//todo make kernel interface and abstract to account for filters and color transformations
+// later todo make kernel interface and abstract to account for filters and color transformations

@@ -47,6 +47,7 @@ public interface ImageProcessorModel {
   void adjustBrightness(String imgName, String newName, int adjustment);
 
 
+
   /**
    * visualizes the given component of the image.
    *
@@ -65,4 +66,12 @@ public interface ImageProcessorModel {
    */
   RGB[][] getImage(String imgName);
 
+
+  /**
+   * generates a histogram representation of the image at the given name.
+   *
+   * @param imgName the name of the image for which to generate a histogram
+   * @return the histogram representation
+   */
+  int[][] getHistogram(String imgName);
 }

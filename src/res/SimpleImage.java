@@ -201,19 +201,19 @@ public class SimpleImage implements ImageModel {
   @Override
   public int[][] histogram() {
     int maxrgb = image[0][0].getMax();
-    int[][] track = new int[maxrgb + 1][4];
+    int[][] track = new int[4][maxrgb + 1];
 
     for (RGB[] rgbs : image) {
       for (RGB rgb : rgbs) {
 
         int r = rgb.getRed();
-        track[r][0] += 1;
+        track[0][r]++;
         int g = rgb.getGreen();
-        track[g][1] += 1;
+        track[1][g]++;
         int b = rgb.getBlue();
-        track[b][2] += 1;
-        int i = rgb.intensity();
-        track[i][3] += 1;
+        track[2][b]++;
+        int in = rgb.intensity();
+        track[3][in]++;
 
       }
     }

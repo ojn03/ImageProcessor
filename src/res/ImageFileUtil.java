@@ -81,6 +81,23 @@ public class ImageFileUtil {
 
   private static void writeOther(String fp, String extension, ImageModel img) {
     RGB[][] rgbs = img.getImage();
+    BufferedImage buf = toBuf(rgbs);
+
+    File file = new File(fp);
+    try {
+      ImageIO.write(buf, extension, file);
+    } catch (IOException e) {
+      throw new IllegalArgumentException("could not write to path: " + fp);
+    }
+  }
+
+  /**
+   * converts a 2d RGB array into a buffered image.
+   *
+   * @param rgbs the array to be converted
+   * @return a buffered image representation of rgbs
+   */
+  public static BufferedImage toBuf(RGB[][] rgbs) {
     int h = rgbs.length;
     int w = rgbs[0].length;
     BufferedImage buf = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
@@ -94,17 +111,10 @@ public class ImageFileUtil {
         p |= (r << 16);
         p |= (g << 8);
         p |= b;
-
         buf.setRGB(j, i, p);
-
       }
     }
-    File file = new File(fp);
-    try {
-      ImageIO.write(buf, extension, file);
-    } catch (IOException e) {
-      throw new IllegalArgumentException("could not write to path: " + fp);
-    }
+    return buf;
   }
 
   private static void writePPM(String filepath, ImageModel img) {
@@ -127,6 +137,7 @@ public class ImageFileUtil {
 
   /**
    * Reads a file.
+   *
    * @param filepath filepath of desired file.
    * @return ImageModel
    */
