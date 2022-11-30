@@ -1,2 +1,6 @@
-Changes:
-In ImageProcessor Model many of the methods were very similar. They each took in an imgname and new name then applied some edit to it using ImageModel methods. To streamline this, each of these methods were combined into Edit which takes the imgname and newname as well as a Function that edits an image model. The corresponding Command classes were updated accordingly, and now, the code is much more readable and less repetitive.
+Though many additions were included, the overall design of the image processor generally remains identical. Several methods were added such as getHistogram() to complement new functionalities, otherwise, little was changed.
+
+Added classes include interfaces FeaturesController and GUIView as well as their implementations. Supplemental classes (CommandsPanel, HistogramPanel, ImageNamesPanel,and ImagePanel) were added to help organize the GUI's layout. Each of these classes implements required aspects of the GUIView as detailed by the assignment.
+
+
+fruit image citation: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRge2qhyod54c8WA-efJvnQ6jqM0nkhkL8kbQ&usqp=CAU

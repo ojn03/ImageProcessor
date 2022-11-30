@@ -7,8 +7,8 @@ import model.ImageProcessorModel;
  */
 public abstract class Commands implements ImageProcessorCommand {
 
-  String img;
-  String newName;
+  protected String img;
+  protected String newName;
 
   /**
    * Constructs a Command.

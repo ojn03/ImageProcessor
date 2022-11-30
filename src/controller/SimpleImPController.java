@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -82,7 +80,6 @@ public class SimpleImPController implements ImageProcessorController {
 
     }
   }
-
 
 
 }

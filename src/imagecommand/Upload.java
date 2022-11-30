@@ -6,8 +6,8 @@ import model.ImageProcessorModel;
  * A command function-object to upload an image from a filepath into the processor.
  */
 public class Upload implements ImageProcessorCommand {
-  String filepath;
-  String imgName;
+  private final String filepath;
+  private final String imgName;
 
   /**
    * A constructor to hold arguments used for the upload command.

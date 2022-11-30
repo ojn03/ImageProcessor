@@ -15,6 +15,7 @@ public class Kernel {
 
   /**
    * Constructs a kernel.
+   *
    * @param k array of doubles.
    */
   public Kernel(double[][] k) {
@@ -27,6 +28,7 @@ public class Kernel {
 
   /**
    * Constructs a kernel.
+   *
    * @param s a String that represents the type of filter.
    */
   public Kernel(String s) {
@@ -64,19 +66,20 @@ public class Kernel {
       };
       size = 3;
     } else {
-      throw new IllegalArgumentException("Unknown Kernel: "+ s);
+      throw new IllegalArgumentException("Unknown Kernel: " + s);
     }
   }
 
   /**
    * Gets the filtered value at the given coordinates, throws IllegalArgumentException if given
    * position is out of bounds of the array.
+   *
    * @param i the row of the array at the desired coordinates.
    * @param j the column of the array at the desired coordinates.
    * @return double of the given value.
    * @throws IllegalArgumentException when index is out of bounds.
    */
-  double slotAt(int i, int j) {
+  public double slotAt(int i, int j) {
     try {
       return filter[i][j];
     } catch (IndexOutOfBoundsException e) {

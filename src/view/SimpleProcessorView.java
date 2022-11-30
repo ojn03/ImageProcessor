@@ -8,7 +8,6 @@ import model.ImageProcessorModel;
  * visualizes a processor model and controller.
  */
 public class SimpleProcessorView implements ImageProcessorView {
-  private final ImageProcessorModel model;
   private final Appendable destination;
 
   /**
@@ -30,12 +29,9 @@ public class SimpleProcessorView implements ImageProcessorView {
     if (model == null || dest == null) {
       throw new IllegalArgumentException("null arguments");
     }
-    this.model = model;
     this.destination = dest;
   }
 
-  //todo fix histogram
-//todo error handling
 
   @Override
   public void renderMessage(String message) {
@@ -51,7 +47,4 @@ public class SimpleProcessorView implements ImageProcessorView {
 
   }
 
-  public void update() {
-
-  }
 }

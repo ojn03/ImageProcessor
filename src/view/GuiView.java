@@ -2,15 +2,15 @@ package view;
 
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
-
+/**
+ * Operations for the visual representation of a gui.
+ */
 public interface GuiView extends ImageProcessorView {
 
   void setListener(ActionListener a);
 
 
-
-void addImageName(String name);
+  void addImageName(String name);
 
   /**
    * changes the Image shown in the curren Gui and updates the histogram.

@@ -2,6 +2,9 @@ package controller;
 
 import java.awt.event.ActionListener;
 
+/**
+ * Operations to manage user input in GUIs.
+ */
 public interface FeaturesController extends ActionListener, ImageProcessorController {
 
   /**
@@ -19,6 +22,6 @@ public interface FeaturesController extends ActionListener, ImageProcessorContro
    *
    * @return user input
    */
-  String choose(String title, String message );
+  String choose(String title, String message);
 
 }

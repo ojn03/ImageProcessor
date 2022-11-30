@@ -11,7 +11,7 @@ import res.RGB;
  * Implements operations to be used in an image processor.
  */
 public class SimpleImageProcessorModel implements ImageProcessorModel {
-  HashMap<String, ImageModel> images; //filename to picture;
+  private final HashMap<String, ImageModel> images; //filename to picture;
 
   /**
    * creates an empty image processor.
@@ -49,7 +49,7 @@ public class SimpleImageProcessorModel implements ImageProcessorModel {
   }
 
 
- @Override
+  @Override
   public void edit(String imgName, String newName, Function<ImageModel, ImageModel> func) {
     if (!images.containsKey(imgName)) {
       throw new IllegalArgumentException("no such image named " + imgName);
@@ -95,9 +95,8 @@ public class SimpleImageProcessorModel implements ImageProcessorModel {
   @Override
   public RGB[][] getImage(String imgName) {
     if (this.images.containsKey(imgName)) {
-       return images.get(imgName).getImage().clone();
-    }
-    else{
+      return images.get(imgName).getImage().clone();
+    } else {
       throw new IllegalArgumentException("no such image named " + imgName);
     }
   }

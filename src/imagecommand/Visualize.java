@@ -16,7 +16,7 @@ public class Visualize extends Commands {
    * @param newname   the name at which the affected image will be saved
    * @param component dictates what component of the image will be visualized
    */
-  public Visualize(String component,String imgname, String newname) {
+  public Visualize(String component, String imgname, String newname) {
     super(imgname, newname);
     this.component = component;
   }

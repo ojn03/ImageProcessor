@@ -182,7 +182,8 @@ public class SimpleImage implements ImageModel {
           }
         }
 
-        filterMe[i][j] = new RGB((int) Math.round(red), (int) Math.round(green), (int) Math.round(blue));
+        filterMe[i][j] = new RGB((int) Math.round(red),
+                (int) Math.round(green), (int) Math.round(blue));
       }
     }
     return new SimpleImage(filterMe);
