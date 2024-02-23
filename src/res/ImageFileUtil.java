@@ -144,16 +144,6 @@ public class ImageFileUtil {
   public static ImageModel readFile(String filepath) {
     int indexE = filepath.lastIndexOf('.');
     String extension = filepath.substring(indexE + 1);
-    /*
-    switch (extension) {
-      case "ppm":
-        return readPPM(filepath);
-      default:
-
-    }
-
-     */
-
     if (extension.equals("ppm")) {
       return readPPM(filepath);
     } else {
@@ -162,7 +152,7 @@ public class ImageFileUtil {
   }
 
   private static ImageModel readOther(String filepath) {
-    BufferedImage img = null;
+    BufferedImage img;
     try {
       img = ImageIO.read(new File(filepath));
     } catch (IOException e) {

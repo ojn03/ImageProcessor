@@ -32,7 +32,6 @@ public class SimpleProcessorView implements ImageProcessorView {
     this.destination = dest;
   }
 
-
   @Override
   public void renderMessage(String message) {
     if (message == null) {
@@ -43,8 +42,6 @@ public class SimpleProcessorView implements ImageProcessorView {
     } catch (IOException e) {
       throw new IllegalArgumentException(e.getMessage());
     }
-
-
   }
 
 }

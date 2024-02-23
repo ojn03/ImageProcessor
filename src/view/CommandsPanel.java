@@ -3,6 +3,8 @@ package view;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -10,16 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 class CommandsPanel extends JPanel {
-  JButton uploadButton;
-  JButton downloadButton;
-  JButton visualizeButton;
-  JButton sepiaButton;
-  JButton greyScaleButton;
-  JButton flipVButton;
-  JButton flipHButton;
-  JButton brightnessButton;
-  JButton blurButton;
-  JButton sharpenButton;
+  List<JButton> buttons = new ArrayList<>();
+
 
   protected CommandsPanel() {
     Font arial20 = new Font("Arial", Font.ITALIC, 20);
@@ -29,52 +23,26 @@ class CommandsPanel extends JPanel {
     setLayout(new GridLayout(0, 1));
 
     //add command buttons to commandpanel, as well as their action calls
-    uploadButton = new JButton("Upload");
-    uploadButton.setActionCommand("/Upload");
-    downloadButton = new JButton("Download");
-    downloadButton.setActionCommand("/Download");
-    visualizeButton = new JButton("Visualize");
-    visualizeButton.setActionCommand("/Visualize");
-    sepiaButton = new JButton("Sepia Filter");
-    sepiaButton.setActionCommand("/Sepia");
-    greyScaleButton = new JButton("GreyScale Filter");
-    greyScaleButton.setActionCommand("/GreyScale");
-    flipVButton = new JButton("Vertical Flip");
-    flipVButton.setActionCommand("/FlipV");
-    flipHButton = new JButton("Horizontal Flip");
-    flipHButton.setActionCommand("/FlipH");
-    brightnessButton = new JButton("Adjust Brightness");
-    brightnessButton.setActionCommand("/Brightness");
-    blurButton = new JButton("Blur");
-    blurButton.setActionCommand("/Blur");
-    sharpenButton = new JButton("Sharpen");
-    sharpenButton.setActionCommand("/Sharpen");
-
-    add(uploadButton);
-    add(downloadButton);
-    add(flipVButton);
-    add(flipHButton);
-    add(visualizeButton);
-    add(brightnessButton);
-    add(sepiaButton);
-    add(greyScaleButton);
-    add(blurButton);
-    add(sharpenButton);
-
+    buttons.add(new JButton("Upload"));
+    buttons.add(new JButton("Download"));
+    buttons.add(new JButton("Visualize"));
+    buttons.add(new JButton("Sepia Filter"));
+    buttons.add(new JButton("GreyScale Filter"));
+    buttons.add(new JButton("Vertical Flip"));
+    buttons.add(new JButton("Horizontal Flip"));
+    buttons.add(new JButton("Adjust Brightness"));
+    buttons.add(new JButton("Blur"));
+    buttons.add(new JButton("Sharpen"));
+    buttons.add(new JButton("DownSize"));
+    for (JButton jb : buttons) {
+      jb.setActionCommand("/" + jb.getText());
+      add(jb);
+    }
   }
 
   void setListener(ActionListener a) {
-    uploadButton.addActionListener(a);
-    downloadButton.addActionListener(a);
-    visualizeButton.addActionListener(a);
-    sepiaButton.addActionListener(a);
-    greyScaleButton.addActionListener(a);
-    flipVButton.addActionListener(a);
-    flipHButton.addActionListener(a);
-    brightnessButton.addActionListener(a);
-    blurButton.addActionListener(a);
-    sharpenButton.addActionListener(a);
-
+    for (JButton jb : buttons) {
+      jb.addActionListener(a);
+    }
   }
-
 }

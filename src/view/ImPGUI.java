@@ -99,7 +99,6 @@ public class ImPGUI implements GuiView {
     this.a = a;
     commandsPanel.setListener(a);
   }
-
   @Override
   public void setImage(String imgName) {
     //update shown Image
@@ -108,5 +107,3 @@ public class ImPGUI implements GuiView {
     histogramPanel.updateHistogram(m.getHistogram(imgName));
   }
 }
-
-

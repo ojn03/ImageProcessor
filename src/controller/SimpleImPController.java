@@ -6,10 +6,10 @@ import java.util.Scanner;
 import java.util.function.Function;
 
 import imagecommand.AdjustBrightness;
-import imagecommand.Download;
+import imagecommand.DownSize;
 import imagecommand.Edit;
 import imagecommand.ImageProcessorCommand;
-import imagecommand.Upload;
+import imagecommand.Mask;
 import imagecommand.Visualize;
 import model.ImageProcessorModel;
 import res.ImageModel;
@@ -22,7 +22,7 @@ import view.ImageProcessorView;
 public class SimpleImPController implements ImageProcessorController {
   private final ImageProcessorModel model;
   private final ImageProcessorView view;
-  private final Readable input;
+  private final Scanner scan;
 
   /**
    * creates a controller implementation where given input is a given readable.
@@ -38,16 +38,13 @@ public class SimpleImPController implements ImageProcessorController {
     }
     this.model = model;
     this.view = view;
-    this.input = input;
+    scan = new Scanner(input);
   }
 
 
   @Override
   public void runProcessor() {
-    Scanner scan = new Scanner(input);
     HashMap<String, Function<Scanner, ImageProcessorCommand>> commands = new HashMap<>();
-    commands.put("upload", s -> new Upload(s.next(), s.next()));
-    commands.put("download", s -> new Download(s.next(), s.next()));
     commands.put("visualize", s -> new Visualize(s.next(), s.next(), s.next()));
     commands.put("brightness", s -> new AdjustBrightness(s.nextInt(), s.next(), s.next()));
     commands.put("flipv", s -> new Edit(s.next(), s.next(), ImageModel::verticalFlip));
@@ -56,6 +53,11 @@ public class SimpleImPController implements ImageProcessorController {
     commands.put("sepia", s -> new Edit(s.next(), s.next(), ImageModel::transformSepia));
     commands.put("grey", s -> new Edit(s.next(), s.next(), ImageModel::transformGrey));
     commands.put("sharpen", s -> new Edit(s.next(), s.next(), ImageModel::sharpen));
+    commands.put("downsize", s -> new DownSize(s.nextInt(), s.nextInt(), s.next(), s.next()));
+    commands.put("-mask", s -> {
+      String mask = s.next(), cmd = s.next();
+      return new Mask(commands.get(cmd).apply(s), model.getImage(mask));
+    });
 
     view.renderMessage("Image processor is running");
     ImageProcessorCommand c;
@@ -64,6 +66,12 @@ public class SimpleImPController implements ImageProcessorController {
       if (in.equalsIgnoreCase("q") || in.equalsIgnoreCase("quit")) {
         view.renderMessage("Processor Quit!");
         return;
+      } else if (in.equalsIgnoreCase("upload")) {
+        tryU();
+        continue;
+      } else if (in.equalsIgnoreCase("download")) {
+        tryD();
+        continue;
       }
       Function<Scanner, ImageProcessorCommand> cmd = commands.getOrDefault(in, null);
       if (cmd == null) {
@@ -71,13 +79,31 @@ public class SimpleImPController implements ImageProcessorController {
       } else {
         try {
           c = cmd.apply(scan);
-          c.runt(model);
+          model.addImage(c.create(model), c.newName());
           view.renderMessage("command was executed successfully!");
         } catch (InputMismatchException | IllegalArgumentException e) {
           view.renderMessage(e.getMessage());
         }
       }
 
+    }
+  }
+
+  private void tryD() {
+    try {
+      model.download(scan.next(), scan.next());
+      view.renderMessage("Successful download!");
+    } catch (IllegalArgumentException e) {
+      view.renderMessage(e.getMessage());
+    }
+  }
+
+  private void tryU() {
+    try {
+      model.upload(scan.next(), scan.next());
+      view.renderMessage("Successful upload!");
+    } catch (IllegalArgumentException e) {
+      view.renderMessage(e.getMessage());
     }
   }
 

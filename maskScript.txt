@@ -1,0 +1,17 @@
+upload src/res/images/circleMaskSmall.png circlemask
+upload src/res/images/diamondMask.png diamondMask
+upload src/res/images/edges.png edges
+upload src/res/images/swing.jpg swing
+-mask circlemask sepia swing sep
+-mask circlemask blur swing blur
+-mask diamondMask sharpen swing sharp
+-mask diamondMask brightness 20 swing swing20
+-mask edges visualize blue swing visblue
+-mask edges grey swing grey
+download sep src/res/images/sep.png
+download blur src/res/images/blur.png
+download sharp src/res/images/sharp.png
+download swing20 src/res/images/swing20.png
+download visblue src/res/images/visblue.png
+download grey src/res/images/grey.png
+Quit

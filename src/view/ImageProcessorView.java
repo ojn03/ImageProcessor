@@ -12,5 +12,4 @@ public interface ImageProcessorView {
    */
   void renderMessage(String message);
 
-
 }

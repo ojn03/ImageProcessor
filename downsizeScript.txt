@@ -1,0 +1,6 @@
+upload src/res/images/swing.jpg swing
+downsize 400 400 swing 4x4
+downsize 200 400 swing 2x4
+download 4x4 src/res/images/4x4.png
+download 2x4 src/res/images/2x4.png
+Quit

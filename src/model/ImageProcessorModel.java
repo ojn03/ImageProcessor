@@ -16,7 +16,7 @@ public interface ImageProcessorModel {
    * @param filepath the filepath at which the image will be saved
    * @param imgName  the name of the image to save
    */
-  void download(String filepath, String imgName);
+  void download(String imgName, String filepath);
 
   /**
    * Loads an image from the given filepath into the processor as the given name.
@@ -46,7 +46,15 @@ public interface ImageProcessorModel {
    */
   void adjustBrightness(String imgName, String newName, int adjustment);
 
-
+  /**
+   * downsizes this image to the given dimensions
+   *
+   * @param imgName the image to downsize
+   * @param newName the new name for the downsized image
+   * @param h       height after downsized
+   * @param w       width after downsized
+   */
+  void downSize(String imgName, String newName, int h, int w);
 
   /**
    * visualizes the given component of the image.
@@ -57,6 +65,13 @@ public interface ImageProcessorModel {
    */
   void visualize(String imgName, String newName, String component);
 
+  /**
+   * adds an image to the given name in the processor;
+   *
+   * @param img     the image to add
+   * @param newName the name to assign to the added image
+   */
+  void addImage(ImageModel img, String newName);
 
   /**
    * gets a copy of the image at the given name.

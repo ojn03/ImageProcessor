@@ -1,7 +1,5 @@
 package imagecommand;
 
-import model.ImageProcessorModel;
-
 /**
  * Abstract class representing all Image Commands.
  */
@@ -23,11 +21,4 @@ public abstract class Commands implements ImageProcessorCommand {
   }
 
 
-  /**
-   * applies the command onto the given model.
-   *
-   * @param m is the model that will be modified by the command.
-   */
-  @Override
-  public abstract void runt(ImageProcessorModel m);
 }

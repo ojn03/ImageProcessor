@@ -38,7 +38,7 @@ public class GuiController implements FeaturesController {
   public void runProcessor() {
     final JFileChooser fchooser = new JFileChooser(".");
     FileNameExtensionFilter filter = new FileNameExtensionFilter(
-            "JPG, PPM, and PNG Images", "jpg", "png", "ppm");
+            "JPG, PPM, and PNG Images", "jpg","jpeg", "png", "ppm");
     fchooser.setFileFilter(filter);
     fchooser.setDialogTitle("You must Upload an image to Begin using the Processor");
     String name;
@@ -50,12 +50,16 @@ public class GuiController implements FeaturesController {
           name = choose("Choose Name", "choose a name for this image");
           m.upload(f.getAbsolutePath(), name);
           v.addImageName(name);
+          v.setImage(name);
           currentImage = name;
         } catch (IllegalArgumentException ignored) {
           continue;
         }
+
         break;
 
+      }else{
+        System.exit(0);
       }
     }
 
@@ -93,7 +97,7 @@ public class GuiController implements FeaturesController {
           break;
         }
         try {
-          m.download(savePath, currentImage);
+          m.download(currentImage, savePath);
           v.renderMessage("Image Downloaded!");
         } catch (IllegalArgumentException ie) {
           v.renderMessage(ie.getMessage());
@@ -113,7 +117,7 @@ public class GuiController implements FeaturesController {
         }
       }
       break;
-      case "/Sepia": {
+      case "/Sepia Filter": {
         try {
           String newName = choose("Choose New Name", "Choose a name for your Image");
 
@@ -125,7 +129,7 @@ public class GuiController implements FeaturesController {
         }
       }
       break;
-      case "/GreyScale": {
+      case "/GreyScale Filter": {
         try {
           String newName = choose("Choose New Name", "Choose a name for your Image");
 
@@ -138,7 +142,7 @@ public class GuiController implements FeaturesController {
       }
 
       break;
-      case "/FlipV": {
+      case "/Vertical Flip": {
         try {
           String newName = choose("Choose New Name", "Choose a name for your Image");
 
@@ -151,7 +155,7 @@ public class GuiController implements FeaturesController {
       }
 
       break;
-      case "/FlipH": {
+      case "/Horizontal Flip": {
         try {
           String newName = choose("Choose New Name", "Choose a name for your Image");
           m.edit(currentImage, newName, ImageModel::horizontalFlip);
@@ -163,8 +167,8 @@ public class GuiController implements FeaturesController {
         }
       }
       break;
-      case "/Brightness": {
-        int val = 0;
+      case "/Adjust Brightness": {
+        int val;
 
         try {
           String vals = choose("Choose Adjustment",
@@ -199,6 +203,25 @@ public class GuiController implements FeaturesController {
           m.edit(currentImage, newName, ImageModel::sharpen);
           v.addImageName(newName);
           v.renderMessage("Sharpen Filter has been applied!");
+        } catch (IllegalArgumentException ie) {
+          v.renderMessage(ie.getMessage());
+        }
+      }
+      break;
+      case "/DownSize": {
+
+        try {
+          String height = choose("Choose height",
+                  "Choose a height for the downsized image");
+          String width = choose("Choose width",
+                  "Choose a width for the downsized image");
+          int hval = Integer.parseInt(height);
+          int wval = Integer.parseInt(width);
+
+          String newName = choose("Choose New Name", "Choose a name for your Image");
+          m.downSize(currentImage, newName, hval, wval);
+          v.addImageName(newName);
+          v.renderMessage("Adjustment has been applied!");
         } catch (IllegalArgumentException ie) {
           v.renderMessage(ie.getMessage());
         }

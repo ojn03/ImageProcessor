@@ -57,10 +57,28 @@ public interface ImageModel {
    */
   ImageModel sharpen();
 
-
+  /**
+   * applies a sepia transformation to an image.
+   *
+   * @return the transformed image
+   */
   ImageModel transformSepia();
 
+  /**
+   * applies a greyscale transformation to an image.
+   *
+   * @return the transformed image
+   */
   ImageModel transformGrey();
+
+  /**
+   * downsizes the image to given dimensions.
+   *
+   * @param h new height
+   * @param w new width.
+   * @return the transformed image
+   */
+  ImageModel downSize(int h, int w);
 
   /**
    * gets a copy of the image.
@@ -74,5 +92,7 @@ public interface ImageModel {
    *
    * @return returns a hashmap representing value-frequency pairs
    */
-  int[][] histogram( );
+  int[][] histogram();
+
+
 }

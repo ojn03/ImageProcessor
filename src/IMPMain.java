@@ -30,6 +30,7 @@ public class IMPMain {
     if (args.length == 0) {
       GuiView view = new ImPGUI(model);
       controller = new GuiController(model, view);
+      System.out.println("gui started");
       controller.runProcessor();
     } else if (args.length == 1 && args[0].equals("-text")) {
       SimpleProcessorView view = new SimpleProcessorView(model);
@@ -37,7 +38,6 @@ public class IMPMain {
       controller.runProcessor();
     } else if (args.length == 2 && args[0].equals("-file") && args[1].endsWith(".txt")) {
       SimpleProcessorView view = new SimpleProcessorView(model);
-
       Path filePath = Path.of(args[1]);
       String input = null;
       try {

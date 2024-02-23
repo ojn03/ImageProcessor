@@ -16,7 +16,7 @@ class ImageNamesPanel extends JPanel {
 
   public ImageNamesPanel() {
 
-    setMinimumSize(new Dimension(100, 750));
+    setMinimumSize(new Dimension(200, 750));
     Font arial20 = new Font("Arial", Font.ITALIC, 20);
     Border border = BorderFactory.createTitledBorder(null, "Images", 0, 0, arial20);
     this.setBorder(border);

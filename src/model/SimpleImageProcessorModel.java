@@ -31,7 +31,7 @@ public class SimpleImageProcessorModel implements ImageProcessorModel {
 
 
   @Override
-  public void download(String filepath, String imgName) {
+  public void download(String imgName, String filepath) {
     if (!images.containsKey(imgName)) {
       throw new IllegalArgumentException("no such image named\"" + imgName + "\" in processor ");
     }
@@ -79,6 +79,20 @@ public class SimpleImageProcessorModel implements ImageProcessorModel {
 
 
   @Override
+  public void downSize(String imgName, String newName, int h, int w) {
+    if (!images.containsKey(imgName)) {
+      throw new IllegalArgumentException("no such image named " + imgName);
+    }
+    if (images.containsKey(newName)) {
+      throw new IllegalArgumentException(
+              "an image with the name " + newName + " already exits in the processor");
+    }
+    ImageModel visMe = images.get(imgName);
+    images.put(newName, visMe.downSize(h, w));
+  }
+
+
+  @Override
   public void visualize(String imgName, String newName, String component) {
     if (!images.containsKey(imgName)) {
       throw new IllegalArgumentException("no such image named " + imgName);
@@ -91,6 +105,15 @@ public class SimpleImageProcessorModel implements ImageProcessorModel {
     images.put(newName, visMe.visualize(component));
   }
 
+  @Override
+  public void addImage(ImageModel img, String newName) {
+    if (this.images.containsKey(newName)) {
+      throw new IllegalArgumentException("image name already exists :" + newName);
+    } else {
+      images.put(newName, img);
+    }
+  }
+
 
   @Override
   public RGB[][] getImage(String imgName) {
@@ -100,6 +123,7 @@ public class SimpleImageProcessorModel implements ImageProcessorModel {
       throw new IllegalArgumentException("no such image named " + imgName);
     }
   }
+
 
   /**
    * generates a histogram representation of the image at the given name.

@@ -14,6 +14,11 @@ public interface FeaturesController extends ActionListener, ImageProcessorContro
    */
   String openFile();
 
+  /**
+   * use a file chooser to save a file to the given path
+   *
+   * @return the filepath to save the image to
+   */
   String saveFile();
 
 

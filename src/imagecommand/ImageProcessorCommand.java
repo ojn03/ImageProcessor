@@ -1,6 +1,7 @@
 package imagecommand;
 
 import model.ImageProcessorModel;
+import res.ImageModel;
 
 /**
  * represents operations that can be applied on an imageprocessor model.
@@ -8,9 +9,24 @@ import model.ImageProcessorModel;
 public interface ImageProcessorCommand {
 
   /**
-   * applies the command onto the given model.
+   * creates an image with the applied command.
    *
-   * @param m is the model that will be modified by the command.
+   * @param m the model containing the image to apply the command to
+   * @return an edited image
    */
-  void runt(ImageProcessorModel m);
+  ImageModel create(ImageProcessorModel m);
+
+  /**
+   * gets newName.
+   *
+   * @return the newName.
+   */
+  String newName();
+
+  /**
+   * gets original name.
+   *
+   * @return imgname
+   */
+  String imgName();
 }

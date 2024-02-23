@@ -1,6 +1,10 @@
-Though many additions were included, the overall design of the image processor generally remains identical. Several methods were added such as getHistogram() to complement new functionalities, otherwise, little was changed.
+For this extra credit assignment I implemented downsize and mask operations. Both of these are based around function Objects. Each function object is an ImageProcessorCommand with the method create(Model m) which returns the edited image. The Mask command takes a second command so that it can apply its mask to that command. This allows it to be versatile, and be used with any command. The mask and the image, however, must be the same dimensions to work properly.
 
-Added classes include interfaces FeaturesController and GUIView as well as their implementations. Supplemental classes (CommandsPanel, HistogramPanel, ImageNamesPanel,and ImagePanel) were added to help organize the GUI's layout. Each of these classes implements required aspects of the GUIView as detailed by the assignment.
+Only Downsize has been exposed in the GUI, and works exactly like the other commands: Click the downsize command then choose dimensions and a new name. Its text syntax is similar:
+Downsize <newHeight> <newWidth> <imgName> <newName>
 
+Mask syntax is as follows:
+-mask <maskImage> <imgFunction> <Function args> 
+ for example, to use the diamond mask to brightnem the image "swing" by 20 and name it "swing20":
+-mask diamondMask Brightness 20 swing swing20
 
-fruit image citation: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRge2qhyod54c8WA-efJvnQ6jqM0nkhkL8kbQ&usqp=CAU

@@ -1,11 +1,10 @@
 package res;
-
 /**
  * represents a ppm image and operations to modify it.
  */
 public class SimpleImage implements ImageModel {
 
-  private final RGB[][] image;
+  protected final RGB[][] image;
 
   public SimpleImage(RGB[][] img) {
     image = img;
@@ -28,6 +27,32 @@ public class SimpleImage implements ImageModel {
     }
 
     return new SimpleImage(adMe);
+  }
+
+  @Override
+  public ImageModel downSize(int h, int w) {
+    int h1 = image.length;
+    int w1 = image[0].length;
+
+    if (h > h1 || h < 1 || w > w1 || w < 1) {
+      throw new IllegalArgumentException(
+              "new dimensions must be over 0 and smaller than the current image dimensions"
+                      + " (h:" + image.length
+                      + ", w: " + image[0].length + ")");
+    }
+    RGB[][] dsMe = new RGB[h][w];
+    double hscale = (h1 * 1.0) / h;
+    double wscale = (w1 * 1.0) / w;
+    for (int i = 0; i < h; i++) {
+      for (int j = 0; j < w; j++) {
+        int hnew = (int) Math.round(i * hscale);
+        int wnew = (int) Math.round(j * wscale);
+
+        dsMe[i][j] = image[hnew][wnew];
+
+      }
+    }
+    return new SimpleImage(dsMe);
   }
 
 
@@ -99,7 +124,7 @@ public class SimpleImage implements ImageModel {
   }
 
 
-  private ImageModel transform(Kernel k) {
+  protected ImageModel transform(Kernel k) {
     RGB[][] trans = new RGB[image.length][image[0].length];
     for (int i = 0; i < image.length; i++) {
       for (int j = 0; j < image[0].length; j++) {
@@ -143,7 +168,7 @@ public class SimpleImage implements ImageModel {
     return transform(new Kernel("grey"));
   }
 
-  private ImageModel filter(Kernel kern) {
+  protected ImageModel filter(Kernel kern) {
     if (kern == null) {
       throw new IllegalArgumentException("null kernel");
     }

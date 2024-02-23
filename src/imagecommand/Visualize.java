@@ -1,6 +1,8 @@
 package imagecommand;
 
 import model.ImageProcessorModel;
+import res.ImageModel;
+import res.SimpleImage;
 
 /**
  * A command function-object to visualize a component of an image in the processor.
@@ -21,9 +23,18 @@ public class Visualize extends Commands {
     this.component = component;
   }
 
+  @Override
+  public ImageModel create(ImageProcessorModel m) {
+    return new SimpleImage(m.getImage(img)).visualize(component);
+  }
 
   @Override
-  public void runt(ImageProcessorModel m) {
-    m.visualize(img, newName, component);
+  public String newName() {
+    return newName;
+  }
+
+  @Override
+  public String imgName() {
+    return img;
   }
 }

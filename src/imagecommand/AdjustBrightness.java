@@ -1,13 +1,14 @@
 package imagecommand;
 
 import model.ImageProcessorModel;
+import res.ImageModel;
+import res.SimpleImage;
 
 
 /**
  * A command function-object to adjust the brightness of an image in a model.
  */
 public class AdjustBrightness extends Commands {
-
 
   private final int adjustment;
 
@@ -23,10 +24,19 @@ public class AdjustBrightness extends Commands {
     this.adjustment = adjustment;
   }
 
-
-  @Override
-  public void runt(ImageProcessorModel m) {
-    m.adjustBrightness(img, newName, adjustment);
+  public ImageModel create(ImageProcessorModel m) {
+    return new SimpleImage(m.getImage(img)).adjustBrightness(adjustment);
   }
 
+
+  @Override
+  public String newName() {
+    return newName;
+  }
+
+
+  @Override
+  public String imgName() {
+    return img;
+  }
 }
